@@ -14,17 +14,22 @@ import { ContextModule } from './_common/context/context.module';
 import { SecurityGroupModule } from './security-group/security-group.module';
 import { Timestamp } from './_common/graphql/timestamp.scalar';
 import { JSONScalar } from './_common/graphql/json.scalar';
-import { UploaderModule } from './_common/uploader/uploader.module';
 import { HelperModule } from './helper/helper.module';
 import { GqlResponseInterceptor } from './_common/graphql/graphql-response.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { TwilioModule } from './twilio/twilio.module';
 import { DataLoaderModule } from './_common/dataLoader/dataLoader.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { UploadModule } from './_common/upload/upload.module';
+import { JobsModule } from './jobs/jobs.module';
+import { UploadScalar } from './_common/upload/uploader.scalar';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({ rootPath: 'public' }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+    }),
     ConfigModule.forRoot({
       envFilePath: '.env',
       isGlobal: true,
@@ -37,17 +42,18 @@ import { ServeStaticModule } from '@nestjs/serve-static';
     UserModule,
     TweetModule,
     FollowModule,
-    // QueueModule,
     SessionModule,
     DatabaseModule,
     ContextModule,
     SecurityGroupModule,
-    UploaderModule,
     HelperModule,
     AuthModule,
     TwilioModule,
+    UploadModule,
+    JobsModule,
   ],
   providers: [
+    UploadScalar,
     Timestamp,
     JSONScalar,
     { provide: APP_FILTER, useClass: HttpExceptionFilter },

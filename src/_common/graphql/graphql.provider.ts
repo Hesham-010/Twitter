@@ -9,6 +9,7 @@ import {
 } from '../context/context.interface';
 import { DataLoaderService } from '../dataLoader/dataLoader.service';
 import { IDataLoaderService } from '../dataLoader/dataLoader.interface';
+import { join } from 'path';
 
 @Injectable()
 export class GqlConfigService implements GqlOptionsFactory {
@@ -23,7 +24,7 @@ export class GqlConfigService implements GqlOptionsFactory {
     return {
       playground: true,
       introspection: true,
-      autoSchemaFile: true,
+      autoSchemaFile: join(process.cwd(), 'schema.gql'),
       cache: 'bounded',
       persistedQueries: false,
       csrfPrevention: true,

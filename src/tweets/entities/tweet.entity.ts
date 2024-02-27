@@ -3,23 +3,27 @@ import {
   BelongsTo,
   Column,
   DataType,
+  Default,
   ForeignKey,
+  HasOne,
   Model,
   PrimaryKey,
   Table,
 } from 'sequelize-typescript';
-import { User } from 'src/user/models/user.model';
 import { paginate } from 'src/_common/pagination/paginate';
-import { v4 as uuid } from 'uuid';
+import { File } from 'src/_common/upload/models/file.model';
+import { User } from 'src/user/models/user.model';
 
 @ObjectType()
-@Table
+@Table({
+  tableName: 'Tweets',
+})
 export class Tweet extends Model {
   @PrimaryKey
+  @Default(DataType.UUIDV4)
   @Field()
   @Column({
     type: DataType.UUID,
-    defaultValue: () => uuid(),
   })
   id: string;
 
@@ -27,9 +31,15 @@ export class Tweet extends Model {
   @Column
   content: string;
 
-  @Field()
-  @Column
-  tweetImage: string;
+  @ForeignKey(() => File)
+  @Column({
+    type: DataType.UUID,
+  })
+  @Field({ nullable: true })
+  tweetFile: string;
+
+  @HasOne(() => File, 'tweetfile')
+  file: File;
 
   @Field()
   @ForeignKey(() => User)
@@ -41,7 +51,13 @@ export class Tweet extends Model {
   @BelongsTo(() => User)
   user: User;
 
-  static async paginate(page, limit) {
-    return paginate(this, page, limit);
+  static async paginate(
+    page: number = 1,
+    limit: number = 15,
+    filter = {},
+    sort = '-createdAt',
+    include = [],
+  ) {
+    return paginate<User>(this, page, limit, filter, sort, include);
   }
 }

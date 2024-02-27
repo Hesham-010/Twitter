@@ -1,0 +1,309 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Session {
+  id: ID!
+  refreshToken: String!
+  expireDate: DateTime!
+  notificationAllowed: Boolean!
+  device: String!
+  fcmToken: String!
+  userId: String!
+  user: User!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Tweet {
+  id: String!
+  content: String!
+  tweetFile: String
+  userId: String!
+  user: User!
+}
+
+type SecurityGroup {
+  id: ID!
+  groupName: String!
+  description: String
+  permissions: [String!]!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+}
+
+type LastLoginDetails {
+  lastLoginAt: String
+  readableLastLoginAt: String
+  lastLoginDevice: String
+  platformDetails: JSON
+}
+
+type User {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  fullName: String!
+  slug: String!
+  bio: String
+  verifiedPhone: String
+  email: String!
+  country: String!
+  gender: String!
+  role: String!
+  profilePicture: String
+  isBlocked: Boolean!
+  favLang: String!
+  lastLoginDetails: LastLoginDetails
+  securityGroup: SecurityGroup
+}
+
+type PageInfo {
+  hasNext: Boolean!
+  hasBefore: Boolean!
+  page: Float!
+  totalCount: Float!
+  totalPages: Float!
+  limit: Float!
+}
+
+type GqlStringResponse {
+  data: String
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlStringsArrayResponse {
+  data: [String]
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlBooleanResponse {
+  data: Boolean
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlTweetResponse {
+  data: Tweet
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlTweetsPagination {
+  items: [Tweet]
+  pageInfo: PageInfo!
+}
+
+type GqlTweetsResponse {
+  data: GqlTweetsPagination
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlUserResponse {
+  data: User
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlUsersPagination {
+  items: [User]
+  pageInfo: PageInfo!
+}
+
+type GqlUsersResponse {
+  data: GqlUsersPagination
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlSessionsArrayResponse {
+  data: [Session]
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type PermissionGroup {
+  groupName: String!
+  permissions: [String!]!
+}
+
+type GqlSecurityGroupResponse {
+  data: SecurityGroup
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlSecurityGroupsArrayResponse {
+  data: [SecurityGroup]
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type GqlPermissionGroupsArrayResponse {
+  data: [PermissionGroup]
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+type Login {
+  user: User!
+  token: String!
+  refreshToken: String!
+}
+
+type GqlLoginResponse {
+  data: Login
+  code: Int!
+  success: Boolean!
+  message: String
+}
+
+"""Upload custom scalar type"""
+scalar Upload
+
+scalar Timestamp
+
+scalar JSON
+
+type Query {
+  usersBoard: GqlUsersResponse!
+  userBoard(userId: String!): GqlUserResponse!
+  findOneTweet(id: String!): GqlTweetResponse!
+  findTweetsBySpecificUser(userId: String!): GqlTweetsResponse!
+  getTimeLine: GqlTweetsResponse!
+  getAllSession: GqlSessionsArrayResponse!
+  getAllGroups: GqlSecurityGroupsArrayResponse!
+  getOneSecurityGroup(securityGroupId: String!): GqlSecurityGroupResponse!
+  getGroupedPermissions: GqlPermissionGroupsArrayResponse!
+  allPermissions: GqlStringsArrayResponse!
+  me: GqlUserResponse!
+  isVerifiedPhoneExist(input: IsPhoneExistInput!): GqlBooleanResponse!
+}
+
+input IsPhoneExistInput {
+  phone: String!
+  userRole: String!
+}
+
+type Mutation {
+  seedAdmin: GqlBooleanResponse!
+  updateTweet(id: String!, updateTweetInput: UpdateTweetInput!): GqlStringResponse!
+  removeTweet(id: String!): GqlBooleanResponse!
+  createTweet(createTweetInput: CreateTweetInput!): GqlTweetResponse!
+  uploadFile(file: Upload!): String!
+  createSecurityGroup(input: CreateSecurityGroupInput!): GqlSecurityGroupResponse!
+  updateSecurityGroup(input: UpdateSecurityGroupInput!): GqlSecurityGroupResponse!
+  assignSecurityGroupToUsers(input: AssignSecurityGroupToUsers!): GqlSecurityGroupResponse!
+  unAssignSecurityGroupToUsers(input: AssignSecurityGroupToUsers!): GqlBooleanResponse!
+  deleteSecurityGroup(securityGroupId: String!): GqlBooleanResponse!
+  register(input: RegisterInput!): GqlUserResponse!
+  emailAndPasswordLogin(input: EmailAndPasswordLoginInput!): GqlLoginResponse!
+  phoneAndPasswordLogin(input: PhoneAndPasswordLoginInput!): GqlLoginResponse!
+  logOut: GqlBooleanResponse!
+  logOutFromOtherDevices: GqlBooleanResponse!
+  setLastActiveDetails(input: SetLastActiveDetailsInput!): GqlUserResponse!
+  sendVerificationCodeByPhone(input: SendVerificationCodeByPhone!): GqlBooleanResponse!
+  verifyUserByPhone(input: VerifyUserByPhone!): GqlUserResponse!
+  resetPassword(input: ResetPasswordByPhoneInput!): GqlUserResponse!
+}
+
+input UpdateTweetInput {
+  content: String
+  filePath: String
+}
+
+input CreateTweetInput {
+  content: String!
+  filePath: String
+}
+
+input CreateSecurityGroupInput {
+  groupName: String!
+  description: String
+  permissions: [String!]!
+}
+
+input UpdateSecurityGroupInput {
+  securityGroupId: String!
+  groupName: String
+  description: String
+  permissions: [String]
+}
+
+input AssignSecurityGroupToUsers {
+  securityGroupId: String!
+  userIds: [String!]!
+}
+
+input RegisterInput {
+  firstName: String!
+  lastName: String!
+  bio: String
+  email: String
+  phone: String!
+  password: String!
+  fcmToken: String
+  device: String!
+  role: String!
+  country: String!
+  platformDetails: JSON
+}
+
+input EmailAndPasswordLoginInput {
+  email: String!
+  password: String!
+  fcmToken: String!
+  device: String!
+  platformDetails: JSON
+}
+
+input PhoneAndPasswordLoginInput {
+  phone: String!
+  password: String!
+  fcmToken: String!
+  device: String!
+  platformDetails: JSON
+}
+
+input SetLastActiveDetailsInput {
+  device: String!
+  lang: String!
+  platformDetails: String
+}
+
+input SendVerificationCodeByPhone {
+  phone: String!
+  useCase: String!
+}
+
+input VerifyUserByPhone {
+  phone: String!
+  verificationCode: String!
+}
+
+input ResetPasswordByPhoneInput {
+  phone: String!
+  code: String!
+  newPassword: String!
+}
+
+type Subscription {
+  tweetCreated: GqlTweetResponse!
+}

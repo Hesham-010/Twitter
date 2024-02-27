@@ -5,8 +5,8 @@ import { Tweet } from 'src/tweets/entities/tweet.entity';
 import { Session } from 'src/session/models/session.model';
 import { Follow } from 'src/follow/entities/follow.entity';
 import { SecurityGroup } from 'src/security-group/models/security-group.model';
-import { File } from '../uploader/models/file.model';
 import { UserVerificationCode } from 'src/user/models/user-verification-code.model';
+import { File } from 'src/_common/upload/models/file.model';
 
 export const models = [
   User,
@@ -14,8 +14,8 @@ export const models = [
   Session,
   Follow,
   SecurityGroup,
-  File,
   UserVerificationCode,
+  File,
 ];
 
 export const repositories = models.map((m) => ({
