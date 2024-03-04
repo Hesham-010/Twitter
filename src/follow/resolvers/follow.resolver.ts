@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Context, Args } from '@nestjs/graphql';
 import { FollowService } from '../services/follow.service';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
-import { Follow } from '../entities/follow.entity';
+import { Follow } from '../models/follow.model';
 import { GqlStringResponse } from 'src/_common/graphql/graphql-response.type';
 import { GqlFollowsResponse } from '../follow.response';
 import { GqlUsersResponse } from 'src/user/user.response';

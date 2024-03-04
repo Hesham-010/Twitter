@@ -12,7 +12,7 @@ import { CreateTweetInput } from '../dto/create-tweet.input';
 import { UpdateTweetInput } from '../dto/update-tweet.input';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
-import { Tweet } from '../entities/tweet.entity';
+import { Tweet } from '../models/tweet.model';
 import { PubSub } from 'graphql-subscriptions';
 import { CurrentUser } from 'src/_common/decorators/current_user.decorator';
 import { User } from 'src/user/models/user.model';

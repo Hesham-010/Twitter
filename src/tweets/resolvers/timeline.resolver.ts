@@ -3,7 +3,7 @@ import { TweetService } from 'src/tweets/services/tweets.service';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { CreateTweetInput } from '../dto/create-tweet.input';
-import { Follow } from 'src/follow/entities/follow.entity';
+import { Follow } from 'src/follow/models/follow.model';
 import { GqlTweetResponse, GqlTweetsResponse } from '../tweet.response';
 import { CurrentUser } from 'src/_common/decorators/current_user.decorator';
 import { User } from 'src/user/models/user.model';

@@ -13,8 +13,8 @@ import {
 } from 'sequelize-typescript';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 import { Session } from 'src/session/models/session.model';
-import { Follow } from 'src/follow/entities/follow.entity';
-import { Tweet } from 'src/tweets/entities/tweet.entity';
+import { Follow } from 'src/follow/models/follow.model';
+import { Tweet } from 'src/tweets/models/tweet.model';
 import { paginate } from 'src/_common/pagination/paginate';
 import { SecurityGroup } from 'src/security-group/models/security-group.model';
 import { Gender, Lang, UserRole } from '../user.enums';

@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Follow } from '../entities/follow.entity';
+import { Follow } from '../models/follow.model';
 import { Repositories } from 'src/_common/database/database-repository.enum';
 import { IRepository } from 'src/_common/database/buildRepository.interface';
 import { User } from 'src/user/models/user.model';

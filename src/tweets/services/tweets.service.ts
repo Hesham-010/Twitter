@@ -1,7 +1,7 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTweetInput } from '../dto/create-tweet.input';
 import { UpdateTweetInput } from '../dto/update-tweet.input';
-import { Tweet } from '../entities/tweet.entity';
+import { Tweet } from '../models/tweet.model';
 import { User } from 'src/user/models/user.model';
 import { PubSub } from 'graphql-subscriptions';
 import { Repositories } from 'src/_common/database/database-repository.enum';
