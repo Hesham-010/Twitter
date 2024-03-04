@@ -24,7 +24,7 @@ export class GqlConfigService implements GqlOptionsFactory {
     return {
       playground: true,
       introspection: true,
-      autoSchemaFile: join(process.cwd(), 'schema.gql'),
+      autoSchemaFile: true,
       cache: 'bounded',
       persistedQueries: false,
       csrfPrevention: true,
@@ -35,7 +35,6 @@ export class GqlConfigService implements GqlOptionsFactory {
 
         // Get lang and country (if exist)
         let locale = this.contextService.getLocale(<Request>req);
-
         return {
           req,
           currentUser: user,

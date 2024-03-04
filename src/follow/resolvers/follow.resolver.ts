@@ -3,32 +3,35 @@ import { FollowService } from '../services/follow.service';
 import { UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/_common/guards/auth.guard';
 import { Follow } from '../entities/follow.entity';
+import { GqlStringResponse } from 'src/_common/graphql/graphql-response.type';
+import { GqlFollowsResponse } from '../follow.response';
+import { GqlUsersResponse } from 'src/user/user.response';
 
 @UseGuards(AuthGuard)
 @Resolver(() => Follow)
 export class FollowResolver {
   constructor(private readonly followService: FollowService) {}
 
-  //   @Mutation(() => String)
-  //   createFollowOrDelete(
-  //     @Context() context,
-  //     @Args('followingId') followingId: string,
-  //   ) {
-  //     return this.followService.createFollowOrDelete(context, followingId);
-  //   }
+  @Mutation(() => GqlStringResponse)
+  createFollowOrDelete(
+    @Context() context,
+    @Args('followingId') followingId: string,
+  ) {
+    return this.followService.createFollowOrDelete(context, followingId);
+  }
 
-  //   @Query(() => [Follow])
-  //   findAllFollows() {
-  //     return this.followService.findAll();
-  //   }
+  @Query(() => GqlFollowsResponse)
+  findAllFollows() {
+    return this.followService.findAll();
+  }
 
-  //   @Query(() => [String])
-  //   findFollwers(@Args('followingId') followingId: string) {
-  //     return this.followService.findFollwers(followingId);
-  //   }
+  @Query(() => GqlUsersResponse)
+  findFollwers(@Args('followingId') followingId: string) {
+    return this.followService.findFollwers(followingId);
+  }
 
-  //   @Query(() => [String])
-  //   findFollwings(@Args('followerId') followerId: string) {
-  //     return this.followService.findFollwings(followerId);
-  //   }
+  @Query(() => GqlUsersResponse)
+  findFollwings(@Args('followerId') followerId: string) {
+    return this.followService.findFollwings(followerId);
+  }
 }

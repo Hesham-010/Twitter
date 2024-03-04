@@ -20,7 +20,7 @@ import { SecurityGroup } from 'src/security-group/models/security-group.model';
 import { Gender, Lang, UserRole } from '../user.enums';
 import { LastLoginDetails } from '../user.type';
 import { UserVerificationCode } from './user-verification-code.model';
-import { File } from 'src/_common/upload/models/file.model';
+// import { File } from 'src/_common/upload/models/file.model';
 
 @ObjectType()
 @Table({
@@ -132,8 +132,8 @@ export class User extends Model {
   @HasMany(() => Session)
   session: Session[];
 
-  @HasMany(() => File)
-  file: File[];
+  // @HasMany(() => File)
+  // file: File[];
 
   @HasMany(() => UserVerificationCode)
   UserVerificationCode: UserVerificationCode[];

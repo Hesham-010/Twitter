@@ -21,9 +21,8 @@ import { TwilioModule } from './twilio/twilio.module';
 import { DataLoaderModule } from './_common/dataLoader/dataLoader.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { UploadModule } from './_common/upload/upload.module';
 import { JobsModule } from './jobs/jobs.module';
-import { UploadScalar } from './_common/upload/uploader.scalar';
+import { UploadModule } from './upload/upload.module';
 
 @Module({
   imports: [
@@ -49,11 +48,10 @@ import { UploadScalar } from './_common/upload/uploader.scalar';
     HelperModule,
     AuthModule,
     TwilioModule,
-    UploadModule,
     JobsModule,
+    UploadModule,
   ],
   providers: [
-    UploadScalar,
     Timestamp,
     JSONScalar,
     { provide: APP_FILTER, useClass: HttpExceptionFilter },

@@ -13,14 +13,14 @@ import { Paginate } from 'src/user/dto/pagination.input';
 export class TimelineResolver {
   constructor(private readonly tweetService: TweetService) {}
 
-  @UseGuards(AuthGuard)
-  @Mutation(() => GqlTweetResponse)
-  async createTweet(
-    @CurrentUser() user: User,
-    @Args('createTweetInput') createTweetInput: CreateTweetInput,
-  ) {
-    return await this.tweetService.create(createTweetInput, user);
-  }
+  // @UseGuards(AuthGuard)
+  // @Mutation(() => GqlTweetResponse)
+  // async createTweet(
+  //   @CurrentUser() user: User,
+  //   @Args('createTweetInput') createTweetInput: CreateTweetInput,
+  // ) {
+  //   return await this.tweetService.create(createTweetInput, user);
+  // }
 
   @UseGuards(AuthGuard)
   @Query(() => GqlTweetsResponse)

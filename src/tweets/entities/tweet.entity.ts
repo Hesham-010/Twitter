@@ -11,7 +11,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { paginate } from 'src/_common/pagination/paginate';
-import { File } from 'src/_common/upload/models/file.model';
+// import { File } from 'src/_common/upload/models/file.model';
 import { User } from 'src/user/models/user.model';
 
 @ObjectType()
@@ -31,15 +31,15 @@ export class Tweet extends Model {
   @Column
   content: string;
 
-  @ForeignKey(() => File)
-  @Column({
-    type: DataType.UUID,
-  })
-  @Field({ nullable: true })
-  tweetFile: string;
+  // @ForeignKey(() => File)
+  // @Column({
+  //   type: DataType.UUID,
+  // })
+  // @Field({ nullable: true })
+  // tweetFile: string;
 
-  @HasOne(() => File, 'tweetfile')
-  file: File;
+  // @HasOne(() => File, 'tweetfile')
+  // file: File;
 
   @Field()
   @ForeignKey(() => User)

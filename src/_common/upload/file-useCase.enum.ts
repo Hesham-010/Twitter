@@ -1,4 +1,0 @@
-export enum FileUseCases {
-  TWEET_FILE = 'TWEET_FILE',
-  PROFILE_PICTURE = 'PROFILE_PICTURE',
-}

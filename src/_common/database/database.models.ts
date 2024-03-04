@@ -6,7 +6,6 @@ import { Session } from 'src/session/models/session.model';
 import { Follow } from 'src/follow/entities/follow.entity';
 import { SecurityGroup } from 'src/security-group/models/security-group.model';
 import { UserVerificationCode } from 'src/user/models/user-verification-code.model';
-import { File } from 'src/_common/upload/models/file.model';
 
 export const models = [
   User,
@@ -15,7 +14,6 @@ export const models = [
   Follow,
   SecurityGroup,
   UserVerificationCode,
-  File,
 ];
 
 export const repositories = models.map((m) => ({

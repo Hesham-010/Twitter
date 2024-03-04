@@ -37,6 +37,9 @@ export class Follow extends Model {
   @ForeignKey(() => User)
   followingId: string;
 
-  @BelongsTo(() => User)
-  user: User;
+  @BelongsTo(() => User, 'followerId')
+  follower: User;
+
+  @BelongsTo(() => User, 'followingId')
+  following: User;
 }
